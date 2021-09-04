@@ -19,6 +19,9 @@
 		FA403F4A26E371DD00855D21 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = FA403F4926E371DD00855D21 /* SDWebImage */; };
 		FA403F4D26E3720600855D21 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FA403F4C26E3720600855D21 /* Alamofire */; };
 		FA403F5026E3724300855D21 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = FA403F4F26E3724300855D21 /* PromiseKit */; };
+		FA403F5326E373A000855D21 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA403F5226E373A000855D21 /* NetworkProvider.swift */; };
+		FA403F5526E3741A00855D21 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA403F5426E3741A00855D21 /* NetworkRequest.swift */; };
+		FA403F5726E3755100855D21 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA403F5626E3755100855D21 /* Credentials.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +57,9 @@
 		FA403F3E26E36C3700855D21 /* HeroesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesViewController.swift; sourceTree = "<group>"; };
 		FA403F3F26E36C3700855D21 /* HeroesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeroesViewController.xib; sourceTree = "<group>"; };
 		FA403F4326E36C7B00855D21 /* HeroesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesRouter.swift; sourceTree = "<group>"; };
+		FA403F5226E373A000855D21 /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
+		FA403F5426E3741A00855D21 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		FA403F5626E3755100855D21 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				FA403F3C26E36BEF00855D21 /* AppLifeCycle */,
+				FA403F5126E3737900855D21 /* API - Networking */,
 				FA403F3B26E36BD200855D21 /* ViewControllers */,
 				FA403F1426E3686C00855D21 /* Assets.xcassets */,
 				FA403F1626E3686C00855D21 /* LaunchScreen.storyboard */,
@@ -167,6 +174,16 @@
 				FA403F4326E36C7B00855D21 /* HeroesRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		FA403F5126E3737900855D21 /* API - Networking */ = {
+			isa = PBXGroup;
+			children = (
+				FA403F5226E373A000855D21 /* NetworkProvider.swift */,
+				FA403F5426E3741A00855D21 /* NetworkRequest.swift */,
+				FA403F5626E3755100855D21 /* Credentials.swift */,
+			);
+			path = "API - Networking";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,7 +329,10 @@
 				FA403F0C26E3686B00855D21 /* AppDelegate.swift in Sources */,
 				FA403F4026E36C3700855D21 /* HeroesViewController.swift in Sources */,
 				FA403F4426E36C7B00855D21 /* HeroesRouter.swift in Sources */,
+				FA403F5726E3755100855D21 /* Credentials.swift in Sources */,
 				FA403F0E26E3686B00855D21 /* SceneDelegate.swift in Sources */,
+				FA403F5526E3741A00855D21 /* NetworkRequest.swift in Sources */,
+				FA403F5326E373A000855D21 /* NetworkProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
