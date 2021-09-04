@@ -11,15 +11,16 @@ final class HeroesPresenter<T: HeroesView>: BasePresenter<T> {
     
     private let numberOfItemsForPage: Int = 10
     private let getHeroesUseCase: GetHeroesUseCase
+    private let router: HeroesRouter
 
-    init(getHeroesUseCase: GetHeroesUseCase) {
+    init(getHeroesUseCase: GetHeroesUseCase, router: HeroesRouter) {
         self.getHeroesUseCase = getHeroesUseCase
+        self.router = router
     }
     
     // MARK: - Life Cycle
     func viewDidLoad() {
         getHeroes()
-        
     }
     
     private func getHeroes() {

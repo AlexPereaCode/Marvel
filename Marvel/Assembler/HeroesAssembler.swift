@@ -16,7 +16,8 @@ extension HeroesAssembler {
     
     func resolve() -> HeroesViewController {
         let heroesViewController = HeroesViewController()
-        heroesViewController.presenter = HeroesPresenter<HeroesViewController>(getHeroesUseCase: Assembler.shared.resolve())
+        let router = HeroesRouter(viewController: heroesViewController)
+        heroesViewController.presenter = HeroesPresenter<HeroesViewController>(getHeroesUseCase: Assembler.shared.resolve(), router: router)
         
         return heroesViewController
     }

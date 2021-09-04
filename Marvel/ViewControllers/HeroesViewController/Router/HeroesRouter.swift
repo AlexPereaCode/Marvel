@@ -7,14 +7,15 @@
 
 import UIKit
 
-class HeroesRouter {
+final class HeroesRouter {
     
-    var viewController: UIViewController {
-        return getHeroesViewController()
+    private weak var viewController: UIViewController?
+    
+    init(viewController: UIViewController) {
+        self.viewController = viewController
     }
     
-    private func getHeroesViewController() -> UIViewController {
-        let homeViewController: HeroesViewController = Assembler.shared.resolve()
-        return homeViewController
+    func pushDetailViewController() {
+
     }
 }
