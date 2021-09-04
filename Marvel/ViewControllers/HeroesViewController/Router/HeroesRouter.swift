@@ -14,7 +14,7 @@ class HeroesRouter {
     }
     
     private func getHeroesViewController() -> UIViewController {
-        let homeViewController = HeroesViewController(nibName: "HeroesViewController", bundle: .main)
+        let homeViewController: HeroesViewController = Assembler.shared.resolve()
         return homeViewController
     }
 }
