@@ -24,8 +24,8 @@ final class HeroesPresenter<T: HeroesView>: BasePresenter<T> {
     }
     
     private func getHeroes() {
-        getHeroesUseCase.execute(offset: 0, limit: numberOfItemsForPage).done { characters in
-            print("completed")
+        getHeroesUseCase.execute(offset: 0, limit: numberOfItemsForPage).done { [weak self] characters in
+            self?.view?.showHeroes(heroes: characters.data.heroes)
         } .ensure {
             self.view?.hideLoading()
         } .catch { error in
