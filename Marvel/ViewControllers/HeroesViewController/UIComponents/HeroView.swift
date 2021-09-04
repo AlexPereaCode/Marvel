@@ -10,18 +10,18 @@ import UIKit
 class HeroView: UIView {
     
     @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    
     private let downloadImageUseCase: DownloadImageUseCase = Assembler.shared.resolve()
 
     // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setupXib()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-
         setupXib()
     }
     
@@ -30,6 +30,7 @@ class HeroView: UIView {
     }
     
     func configure(hero: Hero) {
+        nameLabel.text = hero.name
         downloadImageUseCase.execute(urlString: hero.thumbnail.url).done { image in
             self.imageView.image = image
         }.cauterize()

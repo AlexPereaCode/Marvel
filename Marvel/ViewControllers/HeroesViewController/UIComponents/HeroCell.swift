@@ -13,6 +13,9 @@ class HeroCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        heroView.layer.cornerRadius = 10
+        heroView.layer.masksToBounds = true
     }
 
     override func prepareForReuse() {

@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,30 +17,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QRB-V9-Hh6" customClass="HeroView" customModule="Marvel" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="300" id="qem-PS-YUt"/>
-                        </constraints>
+                        <rect key="frame" x="10" y="15" width="300" height="285"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="QRB-V9-Hh6" secondAttribute="bottom" id="IyL-mN-dVF"/>
-                    <constraint firstItem="QRB-V9-Hh6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="kzb-II-IDM"/>
-                    <constraint firstAttribute="trailing" secondItem="QRB-V9-Hh6" secondAttribute="trailing" id="u6x-ej-ZpH"/>
-                    <constraint firstItem="QRB-V9-Hh6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ykb-qb-ejO"/>
+                    <constraint firstItem="QRB-V9-Hh6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="8Q1-Gi-HNg"/>
+                    <constraint firstAttribute="trailing" secondItem="QRB-V9-Hh6" secondAttribute="trailing" constant="10" id="YV6-IE-zIL"/>
+                    <constraint firstAttribute="bottom" secondItem="QRB-V9-Hh6" secondAttribute="bottom" id="uE2-yf-5Ty"/>
+                    <constraint firstItem="QRB-V9-Hh6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="whm-Dv-iO2"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="heroView" destination="QRB-V9-Hh6" id="sA9-Ez-LtB"/>
             </connections>
             <point key="canvasLocation" x="-600" y="-93"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

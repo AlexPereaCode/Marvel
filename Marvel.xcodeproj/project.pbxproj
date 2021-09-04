@@ -311,8 +311,7 @@
 		FA403F7826E3B62D00855D21 /* UI Components */ = {
 			isa = PBXGroup;
 			children = (
-				FA403F7926E3B6FB00855D21 /* MarvelLoadingView.swift */,
-				FA403F7B26E3B70700855D21 /* MarvelLoadingView.xib */,
+				FA78443926E3F61F005F24EF /* LoadingView */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -326,6 +325,15 @@
 				FA78443626E3E20B005F24EF /* HeroCell.xib */,
 			);
 			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		FA78443926E3F61F005F24EF /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				FA403F7926E3B6FB00855D21 /* MarvelLoadingView.swift */,
+				FA403F7B26E3B70700855D21 /* MarvelLoadingView.xib */,
+			);
+			path = LoadingView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

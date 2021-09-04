@@ -38,7 +38,19 @@ class HeroesViewController: UIViewController, HeroesView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initNavigationController()
         presenter?.viewDidLoad()
+    }
+        
+    private func initNavigationController() {
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = UIColor.black
+        navigationItem.standardAppearance = appearance
+        
+        let imageView = UIImageView(frame: .zero)
+        imageView.image = UIImage(named: "marvel")
+        imageView.contentMode = .scaleAspectFit
+        navigationItem.titleView = imageView
     }
     
     private func registerHeroCell() {
