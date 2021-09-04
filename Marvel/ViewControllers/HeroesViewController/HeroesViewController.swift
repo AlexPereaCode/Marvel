@@ -11,6 +11,9 @@ protocol HeroesView: BaseView {}
 
 class HeroesViewController: UIViewController, HeroesView {
     
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var loadingView: MarvelLoadingView!
+    
     var presenter: HeroesPresenter<HeroesViewController>? {
         didSet {
             presenter?.view = self
@@ -24,12 +27,14 @@ class HeroesViewController: UIViewController, HeroesView {
         presenter?.viewDidLoad()
     }
     
-    func showLoading() {
-        
-    }
-    
     func hideLoading() {
-        
+        loadingView.activityIndicator(isHidden: true)
+        UIView.animate(withDuration: 0.8) {
+            self.loadingView.alpha = 0
+        } completion: { _ in
+            self.loadingView.removeFromSuperview()
+            self.loadingView = nil
+        }
     }
     
 }

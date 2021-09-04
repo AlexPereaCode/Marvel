@@ -8,10 +8,5 @@
 import Foundation
 
 protocol BaseView: AnyObject {
-    
-}
-
-extension BaseView {
-    func showLoading() {}
-    func hideLoading() {}
+    func hideLoading()
 }

@@ -31,6 +31,9 @@
 		FA403F6C26E37E3000855D21 /* GetHeroesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA403F6B26E37E3000855D21 /* GetHeroesUseCase.swift */; };
 		FA403F6F26E380D800855D21 /* Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA403F6E26E380D800855D21 /* Characters.swift */; };
 		FA403F7426E3A3E000855D21 /* AppRooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA403F7326E3A3E000855D21 /* AppRooter.swift */; };
+		FA403F7726E3B56A00855D21 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA403F7626E3B56A00855D21 /* UIViewExtensions.swift */; };
+		FA403F7A26E3B6FB00855D21 /* MarvelLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA403F7926E3B6FB00855D21 /* MarvelLoadingView.swift */; };
+		FA403F7C26E3B70700855D21 /* MarvelLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA403F7B26E3B70700855D21 /* MarvelLoadingView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +81,9 @@
 		FA403F6B26E37E3000855D21 /* GetHeroesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHeroesUseCase.swift; sourceTree = "<group>"; };
 		FA403F6E26E380D800855D21 /* Characters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characters.swift; sourceTree = "<group>"; };
 		FA403F7326E3A3E000855D21 /* AppRooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRooter.swift; sourceTree = "<group>"; };
+		FA403F7626E3B56A00855D21 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		FA403F7926E3B6FB00855D21 /* MarvelLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelLoadingView.swift; sourceTree = "<group>"; };
+		FA403F7B26E3B70700855D21 /* MarvelLoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarvelLoadingView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +144,8 @@
 				FA403F6D26E380C000855D21 /* Models */,
 				FA403F5826E376BE00855D21 /* Base */,
 				FA403F3B26E36BD200855D21 /* ViewControllers */,
+				FA403F7526E3B55600855D21 /* Extensions */,
+				FA403F7826E3B62D00855D21 /* UI Components */,
 				FA403F1426E3686C00855D21 /* Assets.xcassets */,
 				FA403F1626E3686C00855D21 /* LaunchScreen.storyboard */,
 				FA403F1926E3686C00855D21 /* Info.plist */,
@@ -277,6 +285,23 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		FA403F7526E3B55600855D21 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FA403F7626E3B56A00855D21 /* UIViewExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FA403F7826E3B62D00855D21 /* UI Components */ = {
+			isa = PBXGroup;
+			children = (
+				FA403F7926E3B6FB00855D21 /* MarvelLoadingView.swift */,
+				FA403F7B26E3B70700855D21 /* MarvelLoadingView.xib */,
+			);
+			path = "UI Components";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -392,6 +417,7 @@
 			files = (
 				FA403F1826E3686C00855D21 /* LaunchScreen.storyboard in Resources */,
 				FA403F1526E3686C00855D21 /* Assets.xcassets in Resources */,
+				FA403F7C26E3B70700855D21 /* MarvelLoadingView.xib in Resources */,
 				FA403F4126E36C3700855D21 /* HeroesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,12 +451,14 @@
 				FA403F6726E37D3800855D21 /* Assembler.swift in Sources */,
 				FA403F7426E3A3E000855D21 /* AppRooter.swift in Sources */,
 				FA403F5726E3755100855D21 /* Credentials.swift in Sources */,
+				FA403F7A26E3B6FB00855D21 /* MarvelLoadingView.swift in Sources */,
 				FA403F6426E37C5400855D21 /* HeroesPresenter.swift in Sources */,
 				FA403F0E26E3686B00855D21 /* SceneDelegate.swift in Sources */,
 				FA403F6C26E37E3000855D21 /* GetHeroesUseCase.swift in Sources */,
 				FA403F5526E3741A00855D21 /* NetworkRequest.swift in Sources */,
 				FA403F6926E37D7200855D21 /* HeroesAssembler.swift in Sources */,
 				FA403F5326E373A000855D21 /* NetworkProvider.swift in Sources */,
+				FA403F7726E3B56A00855D21 /* UIViewExtensions.swift in Sources */,
 				FA403F6126E3778700855D21 /* HeroesSpecs.swift in Sources */,
 				FA403F5B26E376E600855D21 /* BaseView.swift in Sources */,
 			);

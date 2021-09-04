@@ -24,7 +24,6 @@ final class HeroesPresenter<T: HeroesView>: BasePresenter<T> {
     }
     
     private func getHeroes() {
-        view?.showLoading()
         getHeroesUseCase.execute(offset: 0, limit: numberOfItemsForPage).done { characters in
             print("completed")
         } .ensure {
