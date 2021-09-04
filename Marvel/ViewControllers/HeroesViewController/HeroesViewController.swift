@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HeroesViewController.swift
 //  Marvel
 //
 //  Created by Alejandro Perea Navarrete on 4/9/21.
@@ -7,13 +7,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HeroesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
     }
-
-
 }
-
