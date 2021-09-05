@@ -35,7 +35,7 @@ final class HeroesPresenter<T: HeroesView>: BasePresenter<T> {
     }
     
     func needToLoadMore(currentIndex: Int) -> Bool {
-        return filteredHeroes.isEmpty && currentIndex >= heroes.count - 1
+        return !heroes.isEmpty && currentIndex >= heroes.count - 1
     }
     
     func loadMoreUsers() {
@@ -49,6 +49,15 @@ final class HeroesPresenter<T: HeroesView>: BasePresenter<T> {
             // SHOW ERROR
         }
     }
+    
+    func refreshData() {
+        if filteredHeroes.isEmpty {
+            heroes = [Hero]()
+            getHeroes()
+            return
+        }
+        view?.endRefreshing()
+    }
         
     // MARK: - Private Methods
     private func getHeroes() {
@@ -57,6 +66,7 @@ final class HeroesPresenter<T: HeroesView>: BasePresenter<T> {
             self?.view?.showHeroes(heroes: self?.heroes ?? [Hero]())
         } .ensure {
             self.view?.hideLoading()
+            self.view?.endRefreshing()
         } .catch { error in
             // SHOW ERROR
         }

@@ -43,8 +43,9 @@ class MarvelSearchController: UISearchController {
         clearButton?.tintColor = accentColor
         searchBar.returnKeyType = .done
         searchBar.tintColor = accentColor
-        searchBar.searchBarStyle = .prominent
-        obscuresBackgroundDuringPresentation = true
         searchBar.isTranslucent = true
+        searchBar.enablesReturnKeyAutomatically = false
+        obscuresBackgroundDuringPresentation = false
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
 }

@@ -11,6 +11,7 @@ protocol HeroesView: BaseView {
     func showHeroes(heroes: [Hero])
     func showFooterActivityIndicator()
     func hideFooterActivityIndicator()
+    func endRefreshing()
 }
 
 class HeroesViewController: UIViewController, HeroesView {
@@ -23,6 +24,7 @@ class HeroesViewController: UIViewController, HeroesView {
             tableView.delegate = self
             tableView.rowHeight = UITableView.automaticDimension
             tableView.tableFooterView = UIView(frame: .zero)
+            tableView.keyboardDismissMode = .onDrag
             let nibCell = UINib(nibName: HeroCell.getNibName(), bundle: nil)
             tableView.register(nibCell, forCellReuseIdentifier: HeroCell.getNibName())
         }
@@ -37,6 +39,7 @@ class HeroesViewController: UIViewController, HeroesView {
     
     private var heroes = [Hero]()
     private var searchController: MarvelSearchController!
+    private let refreshControl = UIRefreshControl()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -44,9 +47,10 @@ class HeroesViewController: UIViewController, HeroesView {
         
         initNavigationController()
         initSearchController()
+        initializeRefreshControl()
         presenter?.viewDidLoad()
     }
-        
+    
     private func initNavigationController() {
         let imageView = UIImageView(frame: .zero)
         imageView.image = UIImage(named: "marvel")
@@ -63,14 +67,26 @@ class HeroesViewController: UIViewController, HeroesView {
         navigationItem.searchController = searchController
     }
     
+    private func initializeRefreshControl() {
+        refreshControl.tintColor = .red
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+    }
+    
+    @objc internal func refreshData(_ sender: Any) {
+        presenter?.refreshData()
+    }
+    
     // MARK: - Public Methods
     func hideLoading() {
-        loadingView.activityIndicator(isHidden: true)
-        UIView.animate(withDuration: 0.8) {
-            self.loadingView.alpha = 0
-        } completion: { _ in
-            self.loadingView.removeFromSuperview()
-            self.loadingView = nil
+        if loadingView != nil {
+            loadingView.activityIndicator(isHidden: true)
+            UIView.animate(withDuration: 0.8) {
+                self.loadingView.alpha = 0
+            } completion: { _ in
+                self.loadingView.removeFromSuperview()
+                self.loadingView = nil
+            }
         }
     }
     
@@ -90,6 +106,10 @@ class HeroesViewController: UIViewController, HeroesView {
     func hideFooterActivityIndicator() {
         tableView.tableFooterView?.isHidden = true
         tableView.tableFooterView = nil
+    }
+    
+    func endRefreshing() {
+        refreshControl.endRefreshing()
     }
 }
 
