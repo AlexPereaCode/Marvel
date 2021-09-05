@@ -1,21 +1,24 @@
 //
-//  HeroesSpecs.swift
+//  ComicSpecs.swift
 //  Marvel
 //
-//  Created by Alejandro Perea Navarrete on 4/9/21.
+//  Created by Alejandro Perea Navarrete on 5/9/21.
 //
 
 import Foundation
 import Alamofire
 
-enum HeroesSpecs {
-    case getHeroes(offset: Int)
+enum ComicSpecs {
+    case getComics(heroId: Int)
 }
 
-extension HeroesSpecs: NetworkProviderSpecs {
+extension ComicSpecs: NetworkProviderSpecs {
     
     var path: String {
-        return "characters"
+        switch self {
+        case .getComics(let heroId):
+            return "characters/\(heroId)/comics"
+        }
     }
     
     var method: HTTPMethod {
@@ -24,11 +27,10 @@ extension HeroesSpecs: NetworkProviderSpecs {
     
     var parameters: [String : Any]? {
         switch self {
-        case .getHeroes(let offset):
+        case .getComics:
             let timestamp = Credentials.timestamp()
             
-            return ["offset": offset,
-                    "ts": timestamp,
+            return ["ts": timestamp,
                     "apikey": Credentials.publicKey,
                     "hash": Credentials.hash(timestamp: timestamp)
             ]
@@ -38,5 +40,5 @@ extension HeroesSpecs: NetworkProviderSpecs {
     var showDebugInfo: Bool {
         return true
     }
-
+    
 }

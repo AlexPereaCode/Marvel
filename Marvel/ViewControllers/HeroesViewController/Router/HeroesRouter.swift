@@ -20,8 +20,9 @@ final class HeroesRouter {
         self.viewController = viewController
     }
     
-    func pushHeroDetailViewController(heroId: Int) {
-        print(heroId)
+    func pushHeroDetailViewController(hero: Hero) {
+        let heroDetailViewController: HeroDetailViewController = Assembler.shared.resolve(hero: hero)
+        viewController?.navigationController?.pushViewController(heroDetailViewController, animated: true)
     }
     
     func showErrorAlert(type: HeroesError) {

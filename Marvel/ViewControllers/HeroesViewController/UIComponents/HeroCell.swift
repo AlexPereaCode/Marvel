@@ -16,6 +16,7 @@ class HeroCell: UITableViewCell {
         
         heroView.layer.cornerRadius = 10
         heroView.layer.masksToBounds = true
+        selectionStyle = .none
     }
 
     override func prepareForReuse() {

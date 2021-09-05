@@ -60,7 +60,8 @@ final class HeroesPresenter<T: HeroesView>: BasePresenter<T> {
     }
     
     func didSelectRow(heroId: Int) {
-        router.pushHeroDetailViewController(heroId: heroId)
+        guard let hero = heroes.first(where: { $0.id == heroId }) else { return }
+        router.pushHeroDetailViewController(hero: hero)
     }
         
     // MARK: - Private Methods

@@ -13,3 +13,4 @@ class Assembler {
 
 extension Assembler: HeroesAssembler {}
 extension Assembler: DownloadImageAssembler {}
+extension Assembler: HeroDetailAssembler {}

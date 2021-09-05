@@ -52,6 +52,7 @@ class HeroesViewController: UIViewController, HeroesView {
         presenter?.viewDidLoad()
     }
     
+    // MARK: - Initialization
     private func initNavigationController() {
         let imageView = UIImageView(frame: .zero)
         imageView.image = UIImage(named: "marvel")
