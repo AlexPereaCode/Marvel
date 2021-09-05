@@ -34,12 +34,7 @@ enum LoadingViewType: String {
         super.init(coder: aDecoder)
         setupXib()
     }
-    
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        activityIndicator.color = Colors.accentColor
-    }
-    
+        
     public func activityIndicator(isHidden: Bool) {
         activityIndicator.isHidden = isHidden
     }

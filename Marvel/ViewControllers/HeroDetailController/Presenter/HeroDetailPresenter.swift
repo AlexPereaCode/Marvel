@@ -12,7 +12,6 @@ final class HeroDetailPresenter<T: HeroDetailView>: BasePresenter<T> {
     private let getComicsUseCase: GetComicsUseCase
     private let router: HeroDetailRouter
     private let hero: Hero
-    private var comics = [Comic]()
     
     init(getComicsUseCase: GetComicsUseCase, router: HeroDetailRouter, hero: Hero) {
         self.getComicsUseCase = getComicsUseCase
@@ -28,9 +27,9 @@ final class HeroDetailPresenter<T: HeroDetailView>: BasePresenter<T> {
     // MARK: - Private Methods
     private func getComics() {
         getComicsUseCase.execute(heroId: hero.id).done { [weak self] result in
-            self?.comics = result.data.comics
+            self?.view?.showComics(comics: result.data.comics)
         } .ensure {
-            
+            self.view?.hideLoading()
         } .catch { error in
             
         }

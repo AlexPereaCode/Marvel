@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeroDetailViewController" customModule="Marvel" customModuleProvider="target">
             <connections>
+                <outlet property="collectionView" destination="Jki-eu-0u1" id="ghd-ox-GZA"/>
+                <outlet property="loadingView" destination="KZk-55-yI5" id="gll-yW-yUG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,14 +19,43 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Jki-eu-0u1">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="g1y-cO-BVo">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KZk-55-yI5" customClass="MarvelLoadingView" customModule="Marvel" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="typeString" value="hulk"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemTealColor"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="KZk-55-yI5" secondAttribute="bottom" id="3f6-tm-a9g"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Jki-eu-0u1" secondAttribute="trailing" id="LBZ-uD-xum"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Jki-eu-0u1" secondAttribute="bottom" id="XXQ-vV-2R3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="KZk-55-yI5" secondAttribute="trailing" id="bK6-E6-cdY"/>
+                <constraint firstItem="KZk-55-yI5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="dAy-Go-WyX"/>
+                <constraint firstItem="KZk-55-yI5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="hhw-Da-OXn"/>
+                <constraint firstItem="Jki-eu-0u1" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="leP-QA-0ra"/>
+                <constraint firstItem="Jki-eu-0u1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="oDK-EC-NaI"/>
+            </constraints>
             <point key="canvasLocation" x="139" y="137"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="systemTealColor">
-            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>
