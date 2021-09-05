@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 enum HeroesSpecs {
-    case getHeroes(offset: Int, limit: Int)
+    case getHeroes(offset: Int)
 }
 
 extension HeroesSpecs: NetworkProviderSpecs {
@@ -24,11 +24,10 @@ extension HeroesSpecs: NetworkProviderSpecs {
     
     var parameters: [String : Any]? {
         switch self {
-        case .getHeroes(let offset, let limit):
+        case .getHeroes(let offset):
             let timestamp = Credentials.timestamp()
             
             return ["offset": offset,
-                    "limit": limit,
                     "ts": timestamp,
                     "apikey": Credentials.publicKey,
                     "hash": Credentials.hash(timestamp: timestamp)

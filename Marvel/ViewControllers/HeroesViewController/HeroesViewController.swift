@@ -9,6 +9,8 @@ import UIKit
 
 protocol HeroesView: BaseView {
     func showHeroes(heroes: [Hero])
+    func showFooterActivityIndicator()
+    func hideFooterActivityIndicator()
 }
 
 class HeroesViewController: UIViewController, HeroesView {
@@ -21,7 +23,8 @@ class HeroesViewController: UIViewController, HeroesView {
             tableView.delegate = self
             tableView.rowHeight = UITableView.automaticDimension
             tableView.tableFooterView = UIView(frame: .zero)
-            registerHeroCell()
+            let nibCell = UINib(nibName: HeroCell.getNibName(), bundle: nil)
+            tableView.register(nibCell, forCellReuseIdentifier: HeroCell.getNibName())
         }
     }
     
@@ -60,11 +63,6 @@ class HeroesViewController: UIViewController, HeroesView {
         navigationItem.searchController = searchController
     }
     
-    private func registerHeroCell() {
-        let nibCell = UINib(nibName: HeroCell.getNibName(), bundle: nil)
-        tableView.register(nibCell, forCellReuseIdentifier: HeroCell.getNibName())
-    }
-    
     // MARK: - Public Methods
     func hideLoading() {
         loadingView.activityIndicator(isHidden: true)
@@ -79,6 +77,19 @@ class HeroesViewController: UIViewController, HeroesView {
     func showHeroes(heroes: [Hero]) {
         self.heroes = heroes
         tableView.reloadData()
+    }
+    
+    func showFooterActivityIndicator() {
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.color = .red
+        activityIndicator.startAnimating()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 44)
+        tableView.tableFooterView = activityIndicator
+    }
+    
+    func hideFooterActivityIndicator() {
+        tableView.tableFooterView?.isHidden = true
+        tableView.tableFooterView = nil
     }
 }
 
@@ -100,6 +111,11 @@ extension HeroesViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension HeroesViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if presenter?.needToLoadMore(currentIndex: indexPath.row) == true {
+            presenter?.loadMoreUsers()
+        }
+    }
 }
 
 // MARK: - UISearchResultsUpdating

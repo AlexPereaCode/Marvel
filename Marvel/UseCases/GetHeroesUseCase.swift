@@ -9,11 +9,11 @@ import Foundation
 import PromiseKit
 
 protocol GetHeroesUseCase {
-    func execute(offset: Int, limit: Int) -> Promise<Characters>
+    func execute(offset: Int) -> Promise<Characters>
 }
 
 struct GetHeroes: GetHeroesUseCase {
-    func execute(offset: Int, limit: Int) -> Promise<Characters> {
-        return NetworkRequest<HeroesSpecs, Characters>.make(specs: .getHeroes(offset: offset, limit: limit))
+    func execute(offset: Int) -> Promise<Characters> {
+        return NetworkRequest<HeroesSpecs, Characters>.make(specs: .getHeroes(offset: offset))
     }
 }

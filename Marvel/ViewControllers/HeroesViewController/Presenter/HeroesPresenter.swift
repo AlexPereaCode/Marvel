@@ -9,7 +9,6 @@ import Foundation
 
 final class HeroesPresenter<T: HeroesView>: BasePresenter<T> {
     
-    private let numberOfItemsForPage: Int = 10
     private let getHeroesUseCase: GetHeroesUseCase
     private let router: HeroesRouter
     private var heroes = [Hero]()
@@ -34,12 +33,28 @@ final class HeroesPresenter<T: HeroesView>: BasePresenter<T> {
         filteredHeroes = heroes.filter { $0.name.lowercased().contains(searchText.lowercased()) }
         view?.showHeroes(heroes: filteredHeroes)
     }
+    
+    func needToLoadMore(currentIndex: Int) -> Bool {
+        return filteredHeroes.isEmpty && currentIndex >= heroes.count - 1
+    }
+    
+    func loadMoreUsers() {
+        view?.showFooterActivityIndicator()
+        getHeroesUseCase.execute(offset: heroes.count).done { [weak self] characters in
+            self?.heroes.append(contentsOf: characters.data.heroes)
+            self?.view?.showHeroes(heroes: self?.heroes ?? [Hero]())
+        } .ensure {
+            self.view?.hideFooterActivityIndicator()
+        } .catch { error in
+            // SHOW ERROR
+        }
+    }
         
     // MARK: - Private Methods
     private func getHeroes() {
-        getHeroesUseCase.execute(offset: 0, limit: numberOfItemsForPage).done { [weak self] characters in
+        getHeroesUseCase.execute(offset: 0).done { [weak self] characters in
             self?.heroes = characters.data.heroes
-            self?.view?.showHeroes(heroes: characters.data.heroes)
+            self?.view?.showHeroes(heroes: self?.heroes ?? [Hero]())
         } .ensure {
             self.view?.hideLoading()
         } .catch { error in
