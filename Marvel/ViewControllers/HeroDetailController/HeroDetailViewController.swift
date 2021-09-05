@@ -8,18 +8,23 @@
 import UIKit
 
 protocol HeroDetailView: BaseView {
-    func showComics(comics: [Comic])
+    func showHeader(hero: Hero)
+    func showComics(comicsURL: [String])
 }
 
 class HeroDetailViewController: UIViewController, HeroDetailView {
     
     // MARK: - IBOutlets
     @IBOutlet private weak var loadingView: MarvelLoadingView!
-    @IBOutlet private weak var collectionView: UICollectionView! {
+    @IBOutlet private weak var tableView: UITableView! {
         didSet {
-            collectionView.delegate = self
-            collectionView.dataSource = self
-            collectionView.register(UINib(nibName: ListCollectionCell.nibName, bundle: nil), forCellWithReuseIdentifier: ListCollectionCell.nibName)
+            tableView.dataSource = self
+            tableView.delegate = self
+            tableView.rowHeight = UITableView.automaticDimension
+            tableView.tableFooterView = UIView(frame: .zero)
+            tableView.keyboardDismissMode = .onDrag
+            let nibCell = UINib(nibName: ListTableViewCell.nibName, bundle: nil)
+            tableView.register(nibCell, forCellReuseIdentifier: ListTableViewCell.nibName)
         }
     }
     
@@ -30,7 +35,8 @@ class HeroDetailViewController: UIViewController, HeroDetailView {
         }
     }
     
-    private var comics = [Comic]()
+    private var comicsURL = [String]()
+    private var hero: Hero!
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -40,6 +46,7 @@ class HeroDetailViewController: UIViewController, HeroDetailView {
     }
     
     // MARK: - Initialization
+    
     
     
     // MARK: - Public Methods
@@ -55,32 +62,44 @@ class HeroDetailViewController: UIViewController, HeroDetailView {
         }
     }
     
-    func showComics(comics: [Comic]) {
-        self.comics = comics
-        collectionView.reloadData()
+    func showHeader(hero: Hero) {
+        self.hero = hero
+        title = hero.name
     }
     
+    func showComics(comicsURL: [String]) {
+        self.comicsURL = comicsURL
+        tableView.reloadData()
+    }
 }
 
-extension HeroDetailViewController: UICollectionViewDataSource {
+
+// MARK: - UITableViewDataSource
+extension HeroDetailViewController: UITableViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return comics.count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCollectionCell.nibName, for: indexPath) as! ListCollectionCell
-        cell.configure(imageURL: comics[indexPath.row].thumbnail.url)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.nibName, for: indexPath) as! ListTableViewCell
+        cell.configure(imagesURL: comicsURL, title: "Comics")
+        
         return cell
     }
-    
-    
 }
 
-extension HeroDetailViewController: UICollectionViewDelegate {
+// MARK: - UITableViewDelegate
+extension HeroDetailViewController: UITableViewDelegate {
     
-}
-
-extension HeroDetailViewController: UICollectionViewDelegateFlowLayout {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = HeroDetailHeaderView()
+        headerView.configure(hero: hero)
+        
+        return headerView
+    }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 300
+    }
 }

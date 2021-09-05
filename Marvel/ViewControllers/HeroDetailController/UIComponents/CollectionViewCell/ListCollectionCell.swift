@@ -17,11 +17,19 @@ class ListCollectionCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        imageView.layer.cornerRadius = 10
-        imageView.layer.masksToBounds = true
+        layer.cornerRadius = 10
+        layer.masksToBounds = true
+        backgroundColor = Colors.backgroundColor
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        imageView.image = nil
     }
 
     public func configure(imageURL: String) {
+        imageView.alpha = 0
         downloadImageUseCase.execute(urlString: imageURL).done { image in
             UIView.animate(withDuration: 0.3) {
                 self.imageView.alpha = 1

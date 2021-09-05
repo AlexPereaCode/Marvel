@@ -21,13 +21,16 @@ final class HeroDetailPresenter<T: HeroDetailView>: BasePresenter<T> {
     
     // MARK: - Life Cycle
     func viewDidLoad() {
+        view?.showHeader(hero: hero)
         getComics()
     }
     
     // MARK: - Private Methods
     private func getComics() {
         getComicsUseCase.execute(heroId: hero.id).done { [weak self] result in
-            self?.view?.showComics(comics: result.data.comics)
+            var urls = [String]()
+            result.data.comics.forEach { urls.append($0.thumbnail.url) }
+            self?.view?.showComics(comicsURL: urls)
         } .ensure {
             self.view?.hideLoading()
         } .catch { error in
