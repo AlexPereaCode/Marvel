@@ -46,7 +46,7 @@ final class HeroesPresenter<T: HeroesView>: BasePresenter<T> {
         } .ensure {
             self.view?.hideFooterActivityIndicator()
         } .catch { error in
-            // SHOW ERROR
+            self.router.showErrorAlert(type: .pagination)
         }
     }
     
@@ -58,6 +58,10 @@ final class HeroesPresenter<T: HeroesView>: BasePresenter<T> {
         }
         view?.endRefreshing()
     }
+    
+    func didSelectRow(heroId: Int) {
+        router.pushHeroDetailViewController(heroId: heroId)
+    }
         
     // MARK: - Private Methods
     private func getHeroes() {
@@ -68,7 +72,7 @@ final class HeroesPresenter<T: HeroesView>: BasePresenter<T> {
             self.view?.hideLoading()
             self.view?.endRefreshing()
         } .catch { error in
-            // SHOW ERROR
+            self.router.showErrorAlert(type: .firstLoad)
         }
     }
 }

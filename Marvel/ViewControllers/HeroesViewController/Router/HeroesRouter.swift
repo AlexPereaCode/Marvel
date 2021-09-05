@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum HeroesError: String {
+    case firstLoad = "The first charge of heroes has failed"
+    case pagination = "Hero load paging has failed"
+}
+
 final class HeroesRouter {
     
     private weak var viewController: UIViewController?
@@ -15,7 +20,13 @@ final class HeroesRouter {
         self.viewController = viewController
     }
     
-    func pushDetailViewController() {
-
+    func pushHeroDetailViewController(heroId: Int) {
+        print(heroId)
+    }
+    
+    func showErrorAlert(type: HeroesError) {
+        let alertController = UIAlertController(title: type.rawValue, message: "Try it again later", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        viewController?.present(alertController, animated: true, completion: nil)
     }
 }

@@ -64,7 +64,6 @@ class HeroesViewController: UIViewController, HeroesView {
         searchController = MarvelSearchController(searchBarFrame: .zero, accentColor: Colors.accentColor, placeholderTextColor: Colors.textColor)
         searchController.loadViewIfNeeded()
         searchController.searchResultsUpdater = self
-
         navigationItem.searchController = searchController
     }
     
@@ -145,6 +144,10 @@ extension HeroesViewController: UITableViewDelegate {
         if presenter?.needToLoadMore(currentIndex: indexPath.row) == true {
             presenter?.loadMoreUsers()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.didSelectRow(heroId: heroes[indexPath.row].id)
     }
 }
 
