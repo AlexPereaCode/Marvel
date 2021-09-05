@@ -14,6 +14,7 @@ protocol HeroesView: BaseView {
 class HeroesViewController: UIViewController, HeroesView {
     
     // MARK: - IBOutlets
+    @IBOutlet private weak var loadingView: MarvelLoadingView!
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.dataSource = self
@@ -23,7 +24,6 @@ class HeroesViewController: UIViewController, HeroesView {
             registerHeroCell()
         }
     }
-    @IBOutlet private weak var loadingView: MarvelLoadingView!
     
     // MARK: - Properties
     var presenter: HeroesPresenter<HeroesViewController>? {
@@ -33,24 +33,31 @@ class HeroesViewController: UIViewController, HeroesView {
     }
     
     private var heroes = [Hero]()
+    private var searchController: MarvelSearchController!
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initNavigationController()
+        initSearchController()
         presenter?.viewDidLoad()
     }
         
     private func initNavigationController() {
-        let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = UIColor.black
-        navigationItem.standardAppearance = appearance
-        
         let imageView = UIImageView(frame: .zero)
         imageView.image = UIImage(named: "marvel")
         imageView.contentMode = .scaleAspectFit
+        imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         navigationItem.titleView = imageView
+    }
+    
+    private func initSearchController() {
+        searchController = MarvelSearchController(searchBarFrame: .zero, accentColor: .red, placeholderTextColor: .white)
+        searchController.loadViewIfNeeded()
+        searchController.searchResultsUpdater = self
+
+        navigationItem.searchController = searchController
     }
     
     private func registerHeroCell() {
@@ -94,3 +101,13 @@ extension HeroesViewController: UITableViewDataSource {
 extension HeroesViewController: UITableViewDelegate {
     
 }
+
+// MARK: - UISearchResultsUpdating
+extension HeroesViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text else { return }
+        presenter?.updateSearchResults(searchText: searchText)
+    }
+}
+

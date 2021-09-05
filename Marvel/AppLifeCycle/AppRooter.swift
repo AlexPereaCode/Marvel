@@ -17,6 +17,7 @@ final class AppRouter {
     func showInitialViewController() {
         let rootViewController: HeroesViewController = Assembler.shared.resolve()
         let navigationController = UINavigationController(rootViewController: rootViewController)
+        window.overrideUserInterfaceStyle = .dark
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
     }

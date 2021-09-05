@@ -12,6 +12,8 @@ final class HeroesPresenter<T: HeroesView>: BasePresenter<T> {
     private let numberOfItemsForPage: Int = 10
     private let getHeroesUseCase: GetHeroesUseCase
     private let router: HeroesRouter
+    private var heroes = [Hero]()
+    private var filteredHeroes = [Hero]()
 
     init(getHeroesUseCase: GetHeroesUseCase, router: HeroesRouter) {
         self.getHeroesUseCase = getHeroesUseCase
@@ -23,8 +25,20 @@ final class HeroesPresenter<T: HeroesView>: BasePresenter<T> {
         getHeroes()
     }
     
+    // MARK: - Public Methods
+    func updateSearchResults(searchText: String) {
+        if searchText == "" {
+            view?.showHeroes(heroes: heroes)
+            return
+        }
+        filteredHeroes = heroes.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        view?.showHeroes(heroes: filteredHeroes)
+    }
+        
+    // MARK: - Private Methods
     private func getHeroes() {
         getHeroesUseCase.execute(offset: 0, limit: numberOfItemsForPage).done { [weak self] characters in
+            self?.heroes = characters.data.heroes
             self?.view?.showHeroes(heroes: characters.data.heroes)
         } .ensure {
             self.view?.hideLoading()
@@ -32,5 +46,4 @@ final class HeroesPresenter<T: HeroesView>: BasePresenter<T> {
             // SHOW ERROR
         }
     }
-
 }
