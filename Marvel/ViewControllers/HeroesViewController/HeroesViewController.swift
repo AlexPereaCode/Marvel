@@ -12,6 +12,7 @@ protocol HeroesView: BaseView {
     func showFooterActivityIndicator()
     func hideFooterActivityIndicator()
     func endRefreshing()
+    func appendHeroes(heroes: [Hero])
 }
 
 class HeroesViewController: UIViewController, HeroesView {
@@ -60,7 +61,7 @@ class HeroesViewController: UIViewController, HeroesView {
     }
     
     private func initSearchController() {
-        searchController = MarvelSearchController(searchBarFrame: .zero, accentColor: .red, placeholderTextColor: .white)
+        searchController = MarvelSearchController(searchBarFrame: .zero, accentColor: Colors.accentColor, placeholderTextColor: Colors.textColor)
         searchController.loadViewIfNeeded()
         searchController.searchResultsUpdater = self
 
@@ -68,7 +69,7 @@ class HeroesViewController: UIViewController, HeroesView {
     }
     
     private func initializeRefreshControl() {
-        refreshControl.tintColor = .red
+        refreshControl.tintColor = Colors.accentColor
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
     }
@@ -95,9 +96,18 @@ class HeroesViewController: UIViewController, HeroesView {
         tableView.reloadData()
     }
     
+    func appendHeroes(heroes: [Hero]) {
+        tableView.beginUpdates()
+        heroes.forEach { item in
+            tableView.insertRows(at: [IndexPath(row: self.heroes.count, section: 0)], with: .fade)
+            self.heroes.append(item)
+        }
+        tableView.endUpdates()
+    }
+    
     func showFooterActivityIndicator() {
         let activityIndicator = UIActivityIndicatorView(style: .medium)
-        activityIndicator.color = .red
+        activityIndicator.color = Colors.accentColor
         activityIndicator.startAnimating()
         activityIndicator.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 44)
         tableView.tableFooterView = activityIndicator

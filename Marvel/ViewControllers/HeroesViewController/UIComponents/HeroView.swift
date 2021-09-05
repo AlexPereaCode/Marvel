@@ -31,7 +31,13 @@ class HeroView: UIView {
     
     func configure(hero: Hero) {
         nameLabel.text = hero.name
+        nameLabel.textColor = Colors.textColor
+        backgroundColor = Colors.backgroundColor
+        imageView.alpha = 0
         downloadImageUseCase.execute(urlString: hero.thumbnail.url).done { image in
+            UIView.animate(withDuration: 0.3) {
+                self.imageView.alpha = 1
+            }
             self.imageView.image = image
         }.cauterize()
     }

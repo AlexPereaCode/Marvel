@@ -42,7 +42,7 @@ final class HeroesPresenter<T: HeroesView>: BasePresenter<T> {
         view?.showFooterActivityIndicator()
         getHeroesUseCase.execute(offset: heroes.count).done { [weak self] characters in
             self?.heroes.append(contentsOf: characters.data.heroes)
-            self?.view?.showHeroes(heroes: self?.heroes ?? [Hero]())
+            self?.view?.appendHeroes(heroes: characters.data.heroes)
         } .ensure {
             self.view?.hideFooterActivityIndicator()
         } .catch { error in
