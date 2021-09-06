@@ -14,6 +14,6 @@ protocol GetSeriesUseCase {
 
 struct GetSeries: GetSeriesUseCase {
     func execute(heroId: Int) -> Promise<ContentDataWrapper> {
-        return NetworkRequest<SeriesSpecs, ContentDataWrapper>.make(specs: .getSeries(heroId: heroId))
+        return NetworkRequest<SeriesSpecs, ContentDataWrapper>.make(specs: .getSeries(heroId: heroId, timestamp: Credentials.timestamp()))
     }
 }

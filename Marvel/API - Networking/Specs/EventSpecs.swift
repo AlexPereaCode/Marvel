@@ -9,14 +9,14 @@ import Foundation
 import Alamofire
 
 enum EventSpecs {
-    case getEvents(heroId: Int)
+    case getEvents(heroId: Int, timestamp: String)
 }
 
 extension EventSpecs: NetworkProviderSpecs {
     
     var path: String {
         switch self {
-        case .getEvents(let heroId):
+        case .getEvents(let heroId, _):
             return "characters/\(heroId)/events"
         }
     }
@@ -27,9 +27,7 @@ extension EventSpecs: NetworkProviderSpecs {
     
     var parameters: [String : Any]? {
         switch self {
-        case .getEvents:
-            let timestamp = Credentials.timestamp()
-            
+        case .getEvents(_, let timestamp):
             return ["ts": timestamp,
                     "apikey": Credentials.publicKey,
                     "hash": Credentials.hash(timestamp: timestamp)

@@ -9,14 +9,14 @@ import Foundation
 import Alamofire
 
 enum ComicsSpecs {
-    case getComics(heroId: Int)
+    case getComics(heroId: Int, timestamp: String)
 }
 
 extension ComicsSpecs: NetworkProviderSpecs {
     
     var path: String {
         switch self {
-        case .getComics(let heroId):
+        case .getComics(let heroId, _):
             return "characters/\(heroId)/comics"
         }
     }
@@ -27,9 +27,7 @@ extension ComicsSpecs: NetworkProviderSpecs {
     
     var parameters: [String : Any]? {
         switch self {
-        case .getComics:
-            let timestamp = Credentials.timestamp()
-            
+        case .getComics(_, let timestamp):
             return ["ts": timestamp,
                     "apikey": Credentials.publicKey,
                     "hash": Credentials.hash(timestamp: timestamp)

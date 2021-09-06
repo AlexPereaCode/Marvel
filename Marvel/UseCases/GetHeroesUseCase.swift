@@ -14,6 +14,6 @@ protocol GetHeroesUseCase {
 
 struct GetHeroes: GetHeroesUseCase {
     func execute(offset: Int) -> Promise<CharacterDataWrapper> {
-        return NetworkRequest<HeroSpecs, CharacterDataWrapper>.make(specs: .getHeroes(offset: offset))
+        return NetworkRequest<HeroSpecs, CharacterDataWrapper>.make(specs: .getHeroes(offset: offset, timestamp: Credentials.timestamp()))
     }
 }

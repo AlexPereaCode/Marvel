@@ -14,6 +14,6 @@ protocol GetComicsUseCase {
 
 struct GetComics: GetComicsUseCase {
     func execute(heroId: Int) -> Promise<ContentDataWrapper> {
-        return NetworkRequest<ComicsSpecs, ContentDataWrapper>.make(specs: .getComics(heroId: heroId))
+        return NetworkRequest<ComicsSpecs, ContentDataWrapper>.make(specs: .getComics(heroId: heroId, timestamp: Credentials.timestamp()))
     }
 }

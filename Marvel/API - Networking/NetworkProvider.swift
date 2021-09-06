@@ -22,7 +22,7 @@ public protocol NetworkProviderSpecs {
 extension NetworkProviderSpecs {
     
     var baseURLString: String {
-        return "https://gateway.marvel.com/v1/public/"
+        return BaseURLs.marvelURL
     }
     
     var headers: HTTPHeaders? {

@@ -14,6 +14,6 @@ protocol GetEventsUseCase {
 
 struct GetEvents: GetEventsUseCase {
     func execute(heroId: Int) -> Promise<ContentDataWrapper> {
-        return NetworkRequest<EventSpecs, ContentDataWrapper>.make(specs: .getEvents(heroId: heroId))
+        return NetworkRequest<EventSpecs, ContentDataWrapper>.make(specs: .getEvents(heroId: heroId, timestamp: Credentials.timestamp()))
     }
 }
