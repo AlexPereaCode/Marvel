@@ -1,23 +1,23 @@
 //
-//  ComicSpecs.swift
+//  EventSpecs.swift
 //  Marvel
 //
-//  Created by Alejandro Perea Navarrete on 5/9/21.
+//  Created by Alejandro Perea Navarrete on 6/9/21.
 //
 
 import Foundation
 import Alamofire
 
-enum ComicSpecs {
-    case getComics(heroId: Int)
+enum EventSpecs {
+    case getEvents(heroId: Int)
 }
 
-extension ComicSpecs: NetworkProviderSpecs {
+extension EventSpecs: NetworkProviderSpecs {
     
     var path: String {
         switch self {
-        case .getComics(let heroId):
-            return "characters/\(heroId)/comics"
+        case .getEvents(let heroId):
+            return "characters/\(heroId)/events"
         }
     }
     
@@ -27,7 +27,7 @@ extension ComicSpecs: NetworkProviderSpecs {
     
     var parameters: [String : Any]? {
         switch self {
-        case .getComics:
+        case .getEvents:
             let timestamp = Credentials.timestamp()
             
             return ["ts": timestamp,
@@ -40,5 +40,4 @@ extension ComicSpecs: NetworkProviderSpecs {
     var showDebugInfo: Bool {
         return true
     }
-    
 }

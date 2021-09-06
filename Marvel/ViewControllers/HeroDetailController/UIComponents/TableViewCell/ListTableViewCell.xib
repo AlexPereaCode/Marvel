@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="40" width="320" height="240"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="240" id="u13-Ut-Dil"/>
+                            <constraint firstAttribute="height" constant="240" id="iBY-T9-uCn"/>
                         </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gej-9d-2qT">
                             <size key="itemSize" width="128" height="128"/>
@@ -31,19 +31,26 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04e-75-wjC">
-                        <rect key="frame" x="15" y="10" width="290" height="30"/>
+                        <rect key="frame" x="15" y="10" width="290" height="20"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yPn-8o-CdO">
+                        <rect key="frame" x="0.0" y="40" width="320" height="240"/>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="yPn-8o-CdO" firstAttribute="bottom" secondItem="yTR-sF-oGE" secondAttribute="bottom" id="0tp-NB-XRc"/>
                     <constraint firstItem="yTR-sF-oGE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="69h-FJ-nCt"/>
+                    <constraint firstItem="yPn-8o-CdO" firstAttribute="leading" secondItem="yTR-sF-oGE" secondAttribute="leading" id="6Jr-5y-H88"/>
+                    <constraint firstItem="yPn-8o-CdO" firstAttribute="top" secondItem="yTR-sF-oGE" secondAttribute="top" id="CI7-J6-VS4"/>
                     <constraint firstItem="04e-75-wjC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="H12-p0-Vtq"/>
                     <constraint firstAttribute="bottom" secondItem="yTR-sF-oGE" secondAttribute="bottom" id="WMF-vP-c2W"/>
                     <constraint firstItem="04e-75-wjC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="dn2-o2-6UQ"/>
                     <constraint firstAttribute="trailing" secondItem="yTR-sF-oGE" secondAttribute="trailing" id="eeD-lX-f4t"/>
-                    <constraint firstItem="yTR-sF-oGE" firstAttribute="top" secondItem="04e-75-wjC" secondAttribute="bottom" id="h7K-oQ-msa"/>
+                    <constraint firstItem="yTR-sF-oGE" firstAttribute="top" secondItem="04e-75-wjC" secondAttribute="bottom" constant="10" id="h7K-oQ-msa"/>
+                    <constraint firstItem="yPn-8o-CdO" firstAttribute="trailing" secondItem="yTR-sF-oGE" secondAttribute="trailing" id="hwA-zA-xxj"/>
                     <constraint firstAttribute="trailing" secondItem="04e-75-wjC" secondAttribute="trailing" constant="15" id="saG-8c-pV4"/>
                 </constraints>
             </tableViewCellContentView>
@@ -51,6 +58,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="collectionView" destination="yTR-sF-oGE" id="dal-hC-oiv"/>
+                <outlet property="emptyDataImageView" destination="yPn-8o-CdO" id="Syg-hd-dyT"/>
                 <outlet property="titleLabel" destination="04e-75-wjC" id="3pv-BM-p8H"/>
             </connections>
             <point key="canvasLocation" x="85.507246376811594" y="225"/>

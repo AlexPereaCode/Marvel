@@ -9,11 +9,11 @@ import Foundation
 import PromiseKit
 
 protocol GetComicsUseCase {
-    func execute(heroId: Int) -> Promise<ComicDataWrapper>
+    func execute(heroId: Int) -> Promise<ContentDataWrapper>
 }
 
 struct GetComics: GetComicsUseCase {
-    func execute(heroId: Int) -> Promise<ComicDataWrapper> {
-        return NetworkRequest<ComicSpecs, ComicDataWrapper>.make(specs: .getComics(heroId: heroId))
+    func execute(heroId: Int) -> Promise<ContentDataWrapper> {
+        return NetworkRequest<ComicsSpecs, ContentDataWrapper>.make(specs: .getComics(heroId: heroId))
     }
 }

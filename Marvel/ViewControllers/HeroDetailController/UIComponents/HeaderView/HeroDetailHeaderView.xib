@@ -9,12 +9,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeroDetailHeaderView" customModule="Marvel" customModuleProvider="target">
             <connections>
+                <outlet property="descriptionLabel" destination="Vaa-Cx-cAr" id="17M-RF-fMQ"/>
                 <outlet property="imageView" destination="oC1-N6-Y2G" id="TN8-hm-G4X"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="401"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oC1-N6-Y2G">
@@ -23,17 +24,26 @@
                         <constraint firstAttribute="height" constant="300" id="CBx-oU-Pms"/>
                     </constraints>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vaa-Cx-cAr">
+                    <rect key="frame" x="15" y="315" width="384" height="61"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Vaa-Cx-cAr" secondAttribute="trailing" constant="15" id="CWn-PW-CVj"/>
                 <constraint firstItem="oC1-N6-Y2G" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Dmi-eE-Ujx"/>
+                <constraint firstItem="Vaa-Cx-cAr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="Q2e-JK-3r6"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Vaa-Cx-cAr" secondAttribute="bottom" constant="25" id="QGo-lU-4q3"/>
                 <constraint firstItem="oC1-N6-Y2G" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="a7w-sB-qp7"/>
+                <constraint firstItem="Vaa-Cx-cAr" firstAttribute="top" secondItem="oC1-N6-Y2G" secondAttribute="bottom" constant="15" id="d5P-FN-MQn"/>
                 <constraint firstItem="oC1-N6-Y2G" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="rdC-gM-ECA"/>
-                <constraint firstItem="oC1-N6-Y2G" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="xsf-Ek-s4h"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="115.94202898550725" y="-51.897321428571423"/>
+            <point key="canvasLocation" x="115.94202898550725" y="-18.415178571428569"/>
         </view>
     </objects>
 </document>

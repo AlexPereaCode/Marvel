@@ -10,6 +10,7 @@ import UIKit
 class HeroDetailHeaderView: UIView {
 
     @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var descriptionLabel: UILabel!
     
     private let downloadImageUseCase: DownloadImageUseCase = Assembler.shared.resolve()
 
@@ -24,10 +25,16 @@ class HeroDetailHeaderView: UIView {
         setupXib()
     }
     
-    func configure(hero: Hero) {
-        backgroundColor = Colors.backgroundColor
+    func configure(hero: Hero) {        
         downloadImageUseCase.execute(urlString: hero.thumbnail.url).done { image in
             self.imageView.image = image
         }.cauterize()
+        
+        if hero.description == "" {
+            descriptionLabel.text = "Description not available"
+            return
+        }
+        descriptionLabel.text = hero.description
+        descriptionLabel.textColor = Colors.textColor
     }
 }

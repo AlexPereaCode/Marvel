@@ -19,19 +19,46 @@ class ListTableViewCell: UITableViewCell {
         }
     }
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var emptyDataImageView: UIImageView!
     
     private var imagesURL = [String]()
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        contentView.sendSubviewToBack(emptyDataImageView)
+        emptyDataImageView.image = nil
     }
 
-    public func configure(imagesURL: [String], title: String) {
-        self.imagesURL = imagesURL
+    public func configure(imagesURL: [String], title: String, type: HeroDetailSectionType) {
         titleLabel.text = title
         titleLabel.textColor = Colors.textColor
-        collectionView.reloadData()
+        
+        showEmptyDataImage(show: imagesURL.isEmpty, type: type)
+        loadCollectionData(imagesURL: imagesURL)
+    }
+    
+    private func showEmptyDataImage(show: Bool, type: HeroDetailSectionType) {
+        if show {
+            contentView.bringSubviewToFront(emptyDataImageView)
+            emptyDataImageView.backgroundColor = Colors.backgroundColor
+            
+            switch type {
+            case .comics:
+                emptyDataImageView.image = UIImage(named: "comicsEmpty")
+            case.events:
+                emptyDataImageView.image = UIImage(named: "eventsEmpty")
+            case .series:
+                emptyDataImageView.image = UIImage(named: "seriesEmpty")
+            }
+        }
+    }
+    
+    private func loadCollectionData(imagesURL: [String]) {
+        if !imagesURL.isEmpty {
+            self.imagesURL = imagesURL
+            collectionView.reloadData()
+        }
     }
 }
 
@@ -52,24 +79,16 @@ extension ListTableViewCell: UICollectionViewDataSource {
     }
 }
 
-extension ListTableViewCell: UICollectionViewDelegate {
-    
-}
-
 extension ListTableViewCell: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 140, height: 220)
+        return CGSize(width: 140, height: 240)
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 1
-//    }
-//    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 15
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
     }

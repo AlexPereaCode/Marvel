@@ -7,9 +7,14 @@
 
 import UIKit
 
+enum HeroDetailSectionType: Int, CaseIterable {
+    case comics
+    case series
+    case events
+}
+
 protocol HeroDetailView: BaseView {
-    func showHeader(hero: Hero)
-    func showComics(comicsURL: [String])
+    func showContent(content: DetailHeroModel)
 }
 
 class HeroDetailViewController: UIViewController, HeroDetailView {
@@ -21,8 +26,6 @@ class HeroDetailViewController: UIViewController, HeroDetailView {
             tableView.dataSource = self
             tableView.delegate = self
             tableView.rowHeight = UITableView.automaticDimension
-            tableView.tableFooterView = UIView(frame: .zero)
-            tableView.keyboardDismissMode = .onDrag
             let nibCell = UINib(nibName: ListTableViewCell.nibName, bundle: nil)
             tableView.register(nibCell, forCellReuseIdentifier: ListTableViewCell.nibName)
         }
@@ -35,19 +38,21 @@ class HeroDetailViewController: UIViewController, HeroDetailView {
         }
     }
     
-    private var comicsURL = [String]()
-    private var hero: Hero!
+    private var contentData: DetailHeroModel!
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         presenter?.viewDidLoad()
+        setNavigationBar()
     }
-    
+            
     // MARK: - Initialization
-    
-    
+    private func setNavigationBar() {
+        title = contentData.hero.name
+        navigationController?.navigationBar.tintColor = Colors.accentColor
+    }
     
     // MARK: - Public Methods
     func hideLoading() {
@@ -61,21 +66,19 @@ class HeroDetailViewController: UIViewController, HeroDetailView {
             }
         }
     }
-    
-    func showHeader(hero: Hero) {
-        self.hero = hero
-        title = hero.name
-    }
-    
-    func showComics(comicsURL: [String]) {
-        self.comicsURL = comicsURL
+        
+    func showContent(content: DetailHeroModel) {
+        contentData = content
         tableView.reloadData()
     }
 }
 
-
 // MARK: - UITableViewDataSource
 extension HeroDetailViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        HeroDetailSectionType.allCases.count
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -83,8 +86,19 @@ extension HeroDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.nibName, for: indexPath) as! ListTableViewCell
-        cell.configure(imagesURL: comicsURL, title: "Comics")
         
+        switch indexPath.section {
+        case HeroDetailSectionType.comics.rawValue:
+            cell.configure(imagesURL: contentData.comics, title: "Comics", type: .comics)
+            
+        case HeroDetailSectionType.series.rawValue:
+            cell.configure(imagesURL: contentData.series, title: "Series", type: .series)
+            
+        case HeroDetailSectionType.events.rawValue:
+            cell.configure(imagesURL: contentData.events, title: "Events", type: .events)
+        
+        default:()
+        }
         return cell
     }
 }
@@ -93,13 +107,16 @@ extension HeroDetailViewController: UITableViewDataSource {
 extension HeroDetailViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = HeroDetailHeaderView()
-        headerView.configure(hero: hero)
-        
-        return headerView
+        if section == HeroDetailSectionType.comics.rawValue {
+            let headerView = HeroDetailHeaderView()
+            headerView.configure(hero: contentData.hero)
+            
+            return headerView
+        }
+        return nil
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 300
+        return UITableView.automaticDimension
     }
 }
