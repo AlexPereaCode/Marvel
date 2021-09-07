@@ -29,7 +29,7 @@ class NetworkRequest<S: NetworkProviderSpecs, R: Codable> {
     }
     
     @discardableResult
-    private static func make(specs: S, _ completion: @escaping (Swift.Result<R, Error>) -> Swift.Void) -> DataRequest {
+    public static func make(specs: S, _ completion: @escaping (Swift.Result<R, Error>) -> Swift.Void) -> DataRequest {
         return NetworkProvider<S>.request(specs) { (response, specs) in
             switch response.result {
             case .success:

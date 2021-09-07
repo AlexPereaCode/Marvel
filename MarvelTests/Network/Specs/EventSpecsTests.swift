@@ -1,5 +1,5 @@
 //
-//  EventSpecsTest.swift
+//  EventSpecsTests.swift
 //  MarvelTests
 //
 //  Created by Alejandro Perea Navarrete on 7/9/21.
@@ -9,7 +9,7 @@ import XCTest
 import Alamofire
 @testable import Marvel
 
-class EventSpecsTest: XCTestCase {
+class EventSpecsTests: XCTestCase {
     
     var stringTimestamp: String!
     var eventSpec: EventSpecs!
@@ -27,7 +27,7 @@ class EventSpecsTest: XCTestCase {
     }
     
     func testGetEventsBaseURL() {
-        XCTAssertTrue(eventSpec.baseURLString == BaseURLs.marvelURL)
+        XCTAssertTrue(eventSpec.baseURLString == Credentials.marvelURL)
     }
 
     func testGetEventsPath() {

@@ -1,5 +1,5 @@
 //
-//  HeroSpecsTest.swift
+//  HeroSpecsTests.swift
 //  MarvelTests
 //
 //  Created by Alejandro Perea Navarrete on 6/9/21.
@@ -9,7 +9,7 @@ import XCTest
 import Alamofire
 @testable import Marvel
 
-class HeroSpecsTest: XCTestCase {
+class HeroSpecsTests: XCTestCase {
     
     var stringTimestamp: String!
     var heroSpec: HeroSpecs!
@@ -27,7 +27,7 @@ class HeroSpecsTest: XCTestCase {
     }
 
     func testGetHeroesBaseURL() {
-        XCTAssertTrue(heroSpec.baseURLString == BaseURLs.marvelURL)
+        XCTAssertTrue(heroSpec.baseURLString == Credentials.marvelURL)
     }
     
     func testGetHeroesPath() {

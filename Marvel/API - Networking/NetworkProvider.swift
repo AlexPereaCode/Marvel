@@ -22,7 +22,7 @@ public protocol NetworkProviderSpecs {
 extension NetworkProviderSpecs {
     
     var baseURLString: String {
-        return BaseURLs.marvelURL
+        return Credentials.marvelURL
     }
     
     var headers: HTTPHeaders? {

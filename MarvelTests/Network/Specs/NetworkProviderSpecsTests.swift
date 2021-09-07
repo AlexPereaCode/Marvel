@@ -1,5 +1,5 @@
 //
-//  NetworkProviderSpecsTest.swift
+//  NetworkProviderSpecsTests.swift
 //  MarvelTests
 //
 //  Created by Alejandro Perea Navarrete on 6/9/21.
@@ -9,7 +9,7 @@ import XCTest
 import Alamofire
 @testable import Marvel
 
-class NetworkProviderSpecsTest: XCTestCase {
+class NetworkProviderSpecsTests: XCTestCase {
     
     class NetworkProviderSpecMock: NetworkProviderSpecs {
         var path: String = "test/path"
@@ -28,12 +28,12 @@ class NetworkProviderSpecsTest: XCTestCase {
     }
 
     func testNetworkProviderSpecURLDefault() {
-        let expectedURL = URL(string: "\(BaseURLs.marvelURL)\(spec.path)")!
+        let expectedURL = URL(string: "\(Credentials.marvelURL)\(spec.path)")!
         XCTAssertTrue(spec.url == expectedURL)
     }
     
     func testNetworkProviderSpecBaseURLDefault() {
-        XCTAssertTrue(spec.baseURLString == BaseURLs.marvelURL)
+        XCTAssertTrue(spec.baseURLString == Credentials.marvelURL)
     }
     
     func testNetworkProviderSpecAllowOfflineDefault() {

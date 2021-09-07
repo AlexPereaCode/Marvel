@@ -1,5 +1,5 @@
 //
-//  ComicsSpecsTest.swift
+//  SeriesSpecsTests.swift
 //  MarvelTests
 //
 //  Created by Alejandro Perea Navarrete on 7/9/21.
@@ -9,53 +9,53 @@ import XCTest
 import Alamofire
 @testable import Marvel
 
-class ComicsSpecsTest: XCTestCase {
+class SeriesSpecsTests: XCTestCase {
     
     var stringTimestamp: String!
-    var comicsSpec: ComicsSpecs!
+    var seriesSpec: SeriesSpecs!
     let expectedParametersMessage = "Expected parameters in at this point"
-    let id = 125
+    let id = 654
 
     override func setUpWithError() throws {
         stringTimestamp = Credentials.timestamp()
-        comicsSpec = ComicsSpecs.getComics(heroId: id, timestamp: stringTimestamp)
+        seriesSpec = SeriesSpecs.getSeries(heroId: id, timestamp: stringTimestamp)
     }
 
     override func tearDownWithError() throws {
-        comicsSpec = nil
+        seriesSpec = nil
         stringTimestamp = nil
     }
 
-    func testGetComicsBaseURL() {
-        XCTAssertTrue(comicsSpec.baseURLString == BaseURLs.marvelURL)
+    func testGetSeriesBaseURL() {
+        XCTAssertTrue(seriesSpec.baseURLString == Credentials.marvelURL)
+    }
+
+    func testGetSeriesPath() {
+        XCTAssertTrue(seriesSpec.path == "characters/\(id)/series")
     }
     
-    func testGetComicsPath() {
-        XCTAssertTrue(comicsSpec.path == "characters/\(id)/comics")
+    func testGetSeriesPathHTTPMethod() {
+        XCTAssertTrue(seriesSpec.method == .get)
     }
     
-    func testGetComicsPathHTTPMethod() {
-        XCTAssertTrue(comicsSpec.method == .get)
-    }
-    
-    func testGetComicsTimestampParam() {
-        guard let params = comicsSpec.parameters else {
+    func testGetSeriesTimestampParam() {
+        guard let params = seriesSpec.parameters else {
             XCTFail(expectedParametersMessage)
             return
         }
         XCTAssertTrue(params["ts"] as? String == stringTimestamp)
     }
     
-    func testGetComicsApikeyParam() {
-        guard let params = comicsSpec.parameters else {
+    func testGetSeriesApikeyParam() {
+        guard let params = seriesSpec.parameters else {
             XCTFail(expectedParametersMessage)
             return
         }
         XCTAssertTrue(params["apikey"] as? String == Credentials.publicKey)
     }
     
-    func testGetComicsHashParam() {
-        guard let params = comicsSpec.parameters else {
+    func testGetSeriesHashParam() {
+        guard let params = seriesSpec.parameters else {
             XCTFail(expectedParametersMessage)
             return
         }
