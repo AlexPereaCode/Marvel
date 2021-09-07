@@ -14,28 +14,30 @@ class GetHeroesTests: XCTestCase {
     
     var getHeroesMock: GetHeroesMock!
     var usecase: GetHeroesUseCase!
+    var expectation: XCTestExpectation!
 
     override func setUpWithError() throws {
         getHeroesMock = GetHeroesMock()
         usecase = GetHeroes()
+        expectation = expectation(description: "Loading Heroes")
     }
 
     override func tearDownWithError() throws {
         getHeroesMock = nil
         usecase = nil
+        expectation = nil
     }
     
     func testGetHeroesApiErrorUseCaseReturnTheError() {
         getHeroesMock.result = .init(error: HTTPResponse.noContent)
         
-        let expectation = self.expectation(description: "Loading Heroes")
         var model: CharacterDataWrapper?
                 
         getHeroesMock.execute(offset: 0).done { characters in
             model = characters
         } .ensure {
-            expectation.fulfill()
-        } .catch { error in
+            self.expectation.fulfill()
+        } .catch { _ in
             model = nil
         }
         waitForExpectations(timeout: 5, handler: nil)
@@ -53,14 +55,13 @@ class GetHeroesTests: XCTestCase {
         
         getHeroesMock.result = Promise<CharacterDataWrapper>.value(characterData)
         
-        let expectation = self.expectation(description: "Loading Heroes")
         var model: CharacterDataWrapper?
                 
         getHeroesMock.execute(offset: 0).done { characters in
             model = characters
         } .ensure {
-            expectation.fulfill()
-        } .catch { error in
+            self.expectation.fulfill()
+        } .catch { _ in
             model = nil
         }
         waitForExpectations(timeout: 5, handler: nil)
