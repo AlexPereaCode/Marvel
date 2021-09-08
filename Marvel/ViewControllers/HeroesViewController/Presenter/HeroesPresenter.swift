@@ -27,6 +27,7 @@ final class HeroesPresenter<T: HeroesView>: BasePresenter<T> {
     // MARK: - Public Methods
     func updateSearchResults(searchText: String) {
         if searchText == "" {
+            filteredHeroes = [Hero]()
             view?.showHeroes(heroes: heroes)
             return
         }
