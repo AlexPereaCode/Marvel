@@ -45,12 +45,7 @@ class GetEventsTests: XCTestCase {
     }
     
     func testGetEventsApiSuccessUseCase() throws {
-        guard let path = Bundle(for: type(of: self)).path(forResource: "EventsTests", ofType: "json") else {
-            fatalError("Can't find EventsTests.json file")
-        }
-        
-        let data = try Data(contentsOf: URL(fileURLWithPath: path))
-        let eventsData = try JSONDecoder().decode(ContentDataWrapper.self, from: data)
+        let eventsData = try EventsMock().getEventsMock()
         
         getEventsMock.result = Promise<ContentDataWrapper>.value(eventsData)
         

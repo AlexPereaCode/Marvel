@@ -45,13 +45,7 @@ class GetHeroesTests: XCTestCase {
     }
     
     func testGetHeroesApiSuccessUseCase() throws {
-        
-        guard let path = Bundle(for: type(of: self)).path(forResource: "CharacterTests", ofType: "json") else {
-            fatalError("Can't find CharacterTests.json file")
-        }
-        
-        let data = try Data(contentsOf: URL(fileURLWithPath: path))
-        let characterData = try JSONDecoder().decode(CharacterDataWrapper.self, from: data)
+        let characterData = try CharacterMock().getCharacterMock()
         
         getHeroesMock.result = Promise<CharacterDataWrapper>.value(characterData)
         

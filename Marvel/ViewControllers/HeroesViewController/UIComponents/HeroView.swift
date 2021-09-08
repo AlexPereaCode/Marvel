@@ -10,7 +10,7 @@ import UIKit
 class HeroView: UIView {
     
     @IBOutlet private weak var imageView: UIImageView!
-    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     
     private let downloadImageUseCase: DownloadImageUseCase = Assembler.shared.resolve()
 

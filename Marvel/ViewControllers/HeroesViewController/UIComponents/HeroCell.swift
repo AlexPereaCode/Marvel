@@ -9,7 +9,9 @@ import UIKit
 
 class HeroCell: UITableViewCell {
 
-    @IBOutlet private weak var heroView: HeroView!
+    static let nibName = "HeroCell"
+    
+    @IBOutlet weak var heroView: HeroView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,10 +24,6 @@ class HeroCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         heroView.prepareForReuse()
-    }
-    
-    public class func getNibName() -> String {
-        return "HeroCell"
     }
     
     public func configure(hero: Hero) {

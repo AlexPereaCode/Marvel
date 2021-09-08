@@ -21,7 +21,7 @@ class HeroDetailViewController: UIViewController, HeroDetailView {
     
     // MARK: - IBOutlets
     @IBOutlet private weak var loadingView: MarvelLoadingView!
-    @IBOutlet private weak var tableView: UITableView! {
+    @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.dataSource = self
             tableView.delegate = self

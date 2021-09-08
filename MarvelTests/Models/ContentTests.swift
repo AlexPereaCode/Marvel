@@ -13,12 +13,7 @@ class ContentTests: XCTestCase {
     var dataWrapper: ContentDataWrapper?
 
     override func setUpWithError() throws {
-        guard let path = Bundle(for: type(of: self)).path(forResource: "ComicsTests", ofType: "json") else {
-            fatalError("Can't find ComicsTests.json file")
-        }
-        
-        let data = try Data(contentsOf: URL(fileURLWithPath: path))
-        dataWrapper = try JSONDecoder().decode(ContentDataWrapper.self, from: data)
+        dataWrapper = try ComicsMock().getComicsMock()
     }
 
     override func tearDownWithError() throws {

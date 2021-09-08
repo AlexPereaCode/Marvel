@@ -45,12 +45,7 @@ class GetSeriesTests: XCTestCase {
     }
 
     func testGetSeriesApiSuccessUseCase() throws {
-        guard let path = Bundle(for: type(of: self)).path(forResource: "SeriesTests", ofType: "json") else {
-            fatalError("Can't find SeriesTests.json file")
-        }
-        
-        let data = try Data(contentsOf: URL(fileURLWithPath: path))
-        let seriesData = try JSONDecoder().decode(ContentDataWrapper.self, from: data)
+        let seriesData = try SeriesMock().getSeriesMock()
         
         getSeriesMock.result = Promise<ContentDataWrapper>.value(seriesData)
         

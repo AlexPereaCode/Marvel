@@ -19,15 +19,15 @@ class HeroesViewController: UIViewController, HeroesView {
     
     // MARK: - IBOutlets
     @IBOutlet private weak var loadingView: MarvelLoadingView!
-    @IBOutlet private weak var tableView: UITableView! {
+    @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.dataSource = self
             tableView.delegate = self
             tableView.rowHeight = UITableView.automaticDimension
             tableView.tableFooterView = UIView(frame: .zero)
             tableView.keyboardDismissMode = .onDrag
-            let nibCell = UINib(nibName: HeroCell.getNibName(), bundle: nil)
-            tableView.register(nibCell, forCellReuseIdentifier: HeroCell.getNibName())
+            let nibCell = UINib(nibName: HeroCell.nibName, bundle: nil)
+            tableView.register(nibCell, forCellReuseIdentifier: HeroCell.nibName)
         }
     }
     
@@ -39,7 +39,7 @@ class HeroesViewController: UIViewController, HeroesView {
     }
     
     private var heroes = [Hero]()
-    private var searchController: MarvelSearchController!
+    var searchController: MarvelSearchController!
     private let refreshControl = UIRefreshControl()
     
     // MARK: - Life Cycle
@@ -131,7 +131,7 @@ extension HeroesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: HeroCell.getNibName(), for: indexPath) as! HeroCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: HeroCell.nibName, for: indexPath) as! HeroCell
         cell.configure(hero: heroes[indexPath.row])
         
         return cell

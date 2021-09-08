@@ -18,8 +18,8 @@ class ListTableViewCell: UITableViewCell {
             collectionView.register(UINib(nibName: ListCollectionCell.nibName, bundle: nil), forCellWithReuseIdentifier: ListCollectionCell.nibName)
         }
     }
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var emptyDataImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var emptyDataImageView: UIImageView!
     
     private var imagesURL = [String]()
     

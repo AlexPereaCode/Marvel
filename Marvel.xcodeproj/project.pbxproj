@@ -42,6 +42,12 @@
 		FA2C888F26E7E31700D70650 /* DownloadImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C888E26E7E31700D70650 /* DownloadImageTests.swift */; };
 		FA2C889226E7E67000D70650 /* ColorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C889126E7E67000D70650 /* ColorsTests.swift */; };
 		FA2C889426E7EC7600D70650 /* ContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C889326E7EC7600D70650 /* ContentTests.swift */; };
+		FA2C889726E80B6000D70650 /* HeroesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C889626E80B6000D70650 /* HeroesViewControllerTests.swift */; };
+		FA2C889F26E83C5B00D70650 /* CharacterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C889E26E83C5B00D70650 /* CharacterMock.swift */; };
+		FA2C88A126E83EC400D70650 /* ComicsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C88A026E83EC400D70650 /* ComicsMock.swift */; };
+		FA2C88A326E8404800D70650 /* EventsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C88A226E8404800D70650 /* EventsMock.swift */; };
+		FA2C88A526E8410B00D70650 /* SeriesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C88A426E8410B00D70650 /* SeriesMock.swift */; };
+		FA2C88A726E88A1800D70650 /* HeroDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C88A626E88A1800D70650 /* HeroDetailViewControllerTests.swift */; };
 		FA306EA126E4C47B00A38104 /* MarvelSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA306EA026E4C47B00A38104 /* MarvelSearchController.swift */; };
 		FA306EA626E4F29600A38104 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA306EA526E4F29600A38104 /* Colors.swift */; };
 		FA403F0C26E3686B00855D21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA403F0B26E3686B00855D21 /* AppDelegate.swift */; };
@@ -140,6 +146,12 @@
 		FA2C888E26E7E31700D70650 /* DownloadImageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageTests.swift; sourceTree = "<group>"; };
 		FA2C889126E7E67000D70650 /* ColorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsTests.swift; sourceTree = "<group>"; };
 		FA2C889326E7EC7600D70650 /* ContentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTests.swift; sourceTree = "<group>"; };
+		FA2C889626E80B6000D70650 /* HeroesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesViewControllerTests.swift; sourceTree = "<group>"; };
+		FA2C889E26E83C5B00D70650 /* CharacterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMock.swift; sourceTree = "<group>"; };
+		FA2C88A026E83EC400D70650 /* ComicsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsMock.swift; sourceTree = "<group>"; };
+		FA2C88A226E8404800D70650 /* EventsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsMock.swift; sourceTree = "<group>"; };
+		FA2C88A426E8410B00D70650 /* SeriesMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesMock.swift; sourceTree = "<group>"; };
+		FA2C88A626E88A1800D70650 /* HeroDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		FA306EA026E4C47B00A38104 /* MarvelSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelSearchController.swift; sourceTree = "<group>"; };
 		FA306EA526E4F29600A38104 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		FA403F0826E3686B00855D21 /* Marvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -286,11 +298,8 @@
 		FA2C886A26E768D900D70650 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				FA2C886D26E7694600D70650 /* GetHeroesMock.swift */,
-				FA2C887A26E7C5D500D70650 /* GetComicsMock.swift */,
-				FA2C887C26E7C68600D70650 /* GetEventsMock.swift */,
-				FA2C887E26E7C6DC00D70650 /* GetSeriesMock.swift */,
-				FA2C888026E7C72300D70650 /* DownloadImageMock.swift */,
+				FA2C889C26E83BF300D70650 /* UseCases */,
+				FA2C889D26E83C0E00D70650 /* Models */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -333,6 +342,38 @@
 				FA2C889126E7E67000D70650 /* ColorsTests.swift */,
 			);
 			path = Theme;
+			sourceTree = "<group>";
+		};
+		FA2C889526E80AB300D70650 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA2C889626E80B6000D70650 /* HeroesViewControllerTests.swift */,
+				FA2C88A626E88A1800D70650 /* HeroDetailViewControllerTests.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		FA2C889C26E83BF300D70650 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				FA2C886D26E7694600D70650 /* GetHeroesMock.swift */,
+				FA2C887A26E7C5D500D70650 /* GetComicsMock.swift */,
+				FA2C887C26E7C68600D70650 /* GetEventsMock.swift */,
+				FA2C887E26E7C6DC00D70650 /* GetSeriesMock.swift */,
+				FA2C888026E7C72300D70650 /* DownloadImageMock.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		FA2C889D26E83C0E00D70650 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FA2C889E26E83C5B00D70650 /* CharacterMock.swift */,
+				FA2C88A026E83EC400D70650 /* ComicsMock.swift */,
+				FA2C88A226E8404800D70650 /* EventsMock.swift */,
+				FA2C88A426E8410B00D70650 /* SeriesMock.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		FA306E9F26E4C3F400A38104 /* SearchController */ = {
@@ -397,6 +438,7 @@
 				FA2C887526E78D3800D70650 /* Models */,
 				FA2C885B26E6B64B00D70650 /* Router */,
 				FA2C885C26E6BAED00D70650 /* Network */,
+				FA2C889526E80AB300D70650 /* ViewControllers */,
 				FA2C886A26E768D900D70650 /* Mocks */,
 				FA2C889026E7E65400D70650 /* Theme */,
 				FA2C887126E7862000D70650 /* Resources */,
@@ -807,6 +849,8 @@
 			files = (
 				FA2C887926E7985D00D70650 /* CredentialTests.swift in Sources */,
 				FA2C887B26E7C5D500D70650 /* GetComicsMock.swift in Sources */,
+				FA2C88A326E8404800D70650 /* EventsMock.swift in Sources */,
+				FA2C889726E80B6000D70650 /* HeroesViewControllerTests.swift in Sources */,
 				FA2C885A26E6ACCA00D70650 /* AppRouterTest.swift in Sources */,
 				FA2C887726E78DC400D70650 /* CharacterTests.swift in Sources */,
 				FA2C886726E6D6BF00D70650 /* EventSpecsTests.swift in Sources */,
@@ -814,6 +858,7 @@
 				FA2C888F26E7E31700D70650 /* DownloadImageTests.swift in Sources */,
 				FA2C888926E7DAAC00D70650 /* GetComicsTests.swift in Sources */,
 				FA2C886526E6D14200D70650 /* ComicsSpecsTests.swift in Sources */,
+				FA2C88A726E88A1800D70650 /* HeroDetailViewControllerTests.swift in Sources */,
 				FA2C888B26E7DF6300D70650 /* GetEventsTests.swift in Sources */,
 				FA2C886E26E7694600D70650 /* GetHeroesMock.swift in Sources */,
 				FA2C889426E7EC7600D70650 /* ContentTests.swift in Sources */,
@@ -823,8 +868,11 @@
 				FA2C886326E6C15600D70650 /* HeroSpecsTests.swift in Sources */,
 				FA2C888126E7C72300D70650 /* DownloadImageMock.swift in Sources */,
 				FA2C887F26E7C6DC00D70650 /* GetSeriesMock.swift in Sources */,
+				FA2C88A526E8410B00D70650 /* SeriesMock.swift in Sources */,
+				FA2C889F26E83C5B00D70650 /* CharacterMock.swift in Sources */,
 				FA2C886926E6D99E00D70650 /* SeriesSpecsTests.swift in Sources */,
 				FA2C888D26E7E12100D70650 /* GetSeriesTests.swift in Sources */,
+				FA2C88A126E83EC400D70650 /* ComicsMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
